@@ -51,19 +51,19 @@ iface lo inet loopback
 
 # la premier interface
 iface eth0 inet static
-      address 192.168.3.3
+      address 192.168.1.3
       netmask 255.255.255.0
-      gateway 192.168.3.1
+      gateway 192.168.1.1
       
 # la deuxieme interface     
       iface eth1 inet static
-      address 192.168.3.4
+      address 192.168.2.3
       netmask 255.255.255.0
-      gateway 192.168.3.1
+      gateway 192.168.2.1
       
 # la troisieme interface     
-      iface eth1 inet static
-      address 192.168.3.5
+      iface eth2 inet static
+      address 192.168.3.3
       netmask 255.255.255.0
       gateway 192.168.3.1
 ```
@@ -76,3 +76,18 @@ service networking restart
 > il faut attribuer le `net.ipv4.ip_forward = 1` pour suivre les paquets comme un routeur a travers le réseau 
 
 ### Q6/ : c'est La commande `sudo route` 
+> le routage se fait a travers le serveur 1 , puiqu'il est le `relais` , voila la config sur D1:
+`route add -net 192.168.1.0/24 gw 192.168.2.3 dev enp0s3`
+`route add -net 192.168.3.0/24 gw 192.168.2.3 dev enp0s3`
+
+
+> la config sur P1 comme exemple de pool P1-Px : 
+`route add -net 192.168.2.0/24 gw 192.168.1.3 dev enp0s3`
+`route add -net 192.168.3.0/24 gw 192.168.1.3 dev enp0s3`
+
+
+### Q7/ : 
+il faut rendre le serveur dans la liste `/etc/resolve.conf` pour le consulter automatiquement ! , voila la ligne qu'il faudra ajouter : 
+```bash
+nameserver 172.40.3.2
+```
