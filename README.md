@@ -1,7 +1,7 @@
 # exeam_system
 
-## partie 1 : 
-> les etapes de démarages sont :
+## Partie 1 : 
+### Q1/ les etapes de démarages sont :
 
 | etapes |description |
 |--|--|
@@ -11,7 +11,7 @@
 |4e étape | le noyau. |
 | 5e étape | init. |
 | 6e étape | Runlevel. |
-> les niveau de démarages sont :
+### Q2/ les niveau de démarages sont :
 
 | runlevel |mode | action |
 |--|--|--|
@@ -23,3 +23,15 @@
 |5 	|X11	|As runlevel 3 + display manager(X)|
 |6	|Reboot|	Reboots the system|
 
+### Q3/ la structure de disque est la suivante : 
+
+|partion | point de montage | type de systeme de ficher | description |
+|--|--|--|--|
+| /dev/sda1 | /mnt/win_c | ntfs | partiotion __primaire__ rendre a windows "partiotion "C" |
+| /dev/sda5 | /mnt/win_d | ntfs | partiotion __logique__ rendre a windows "partiotion "D" |
+| /dev/sda6 | / | ext3 | partiotion __primaire__ rendre a Linux |
+| /dev/sda7 | --- | swap | partiotion logique rendre de type _SWAP_ |
+
+### Q4/ cette ligne signifie que :
+`30  12  1-7  *  7  archiver.sh` 
+> cette ligne siqgnifie que le scripte `archiver.sh` doit etre exécuter `chaque dimanche` de `n'importe qu'elle Mois` à partir du `jour 1` jusqu'a le `jour 7` et à l'heure `12:30`
